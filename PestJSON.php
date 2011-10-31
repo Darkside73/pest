@@ -25,20 +25,8 @@ require_once 'Pest.php';
  */
 class PestJSON extends Pest
 {
-  public function post($url, $data, $headers) {
-    return parent::post($url, json_encode($data), $headers);
-  }
-  
-  public function put($url, $data, $headers) {
-    return parent::put($url, json_encode($data), $headers);
-  }
-
-  protected function prepRequest($opts, $url) {
-    $opts[CURLOPT_HTTPHEADER][] = 'Content-Type: application/json';
-    return parent::prepRequest($opts, $url);
-  }
-
-  public function processBody($body) {
+  public function processBody($body)
+  {
     return json_decode($body, true);
   }
 }
